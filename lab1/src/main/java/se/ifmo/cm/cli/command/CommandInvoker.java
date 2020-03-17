@@ -1,7 +1,10 @@
 package se.ifmo.cm.cli.command;
 
 import se.ifmo.cm.cli.state.MenuState;
+import se.ifmo.cm.exception.NoOrUnlimitedSolutionsException;
+import se.ifmo.cm.exception.NoSuchCommandException;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CommandInvoker {
@@ -19,10 +22,12 @@ public class CommandInvoker {
         do {
            try {
                currentCommand.execute();
-           } catch (Exception e) {
+           } catch (IOException e) {
+               System.out.println("Invalid filename " + e.getMessage());
+           } catch (IllegalArgumentException | NoOrUnlimitedSolutionsException | NoSuchCommandException e) {
                System.out.println(e.getMessage());
            }
-           switch (currentCommand.getMenuState()) {
+            switch (currentCommand.getMenuState()) {
                case START:
                    currentCommand = new StartCommand(scanner);
                    break;
