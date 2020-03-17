@@ -10,6 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class GaussianElimination {
+    private final static int OUTPUT_SCALE = 5;
+
     private BigDecimal[][] equations;
     private BigDecimal[] result;
     private BigDecimal[] residuals;
@@ -81,7 +83,7 @@ public class GaussianElimination {
     private void backTraverse() {
         int x = 0;
         result[x] = equations[rows - 1][cols - 1]
-                .divide(equations[rows - 1][cols - 2], Matrix.DEFAULT_SCALE, RoundingMode.HALF_EVEN);
+                .divide(equations[rows - 1][cols - 2], OUTPUT_SCALE, RoundingMode.HALF_EVEN);
         for (int i = rows - 2; i >= 0; i--) {
             BigDecimal leading = equations[i][i];
             BigDecimal tempResult = equations[i][cols - 1];
@@ -89,7 +91,7 @@ public class GaussianElimination {
                 tempResult = tempResult
                         .subtract(equations[i][j].multiply(result[n]));
             }
-            tempResult = tempResult.divide(leading, Matrix.DEFAULT_SCALE, RoundingMode.HALF_EVEN);
+            tempResult = tempResult.divide(leading, OUTPUT_SCALE, RoundingMode.HALF_EVEN);
             result[++x] = tempResult;
         }
     }
@@ -107,8 +109,7 @@ public class GaussianElimination {
             for (int j = 0; j < cols - 1; j++) {
                 leftSum = leftSum.add(equations[i][j].multiply(result[j]));
             }
-            residuals[i] = leftSum.subtract(equations[i][cols - 1])
-                    .setScale(Matrix.DEFAULT_SCALE, RoundingMode.HALF_UP);
+            residuals[i] = leftSum.subtract(equations[i][cols - 1]).setScale(Matrix.DEFAULT_SCALE, RoundingMode.HALF_UP);
         }
     }
 }
