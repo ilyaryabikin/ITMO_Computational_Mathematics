@@ -1,7 +1,6 @@
 package se.ifmo.cm.matrix;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Arrays;
 
 public abstract class Matrix {
@@ -41,39 +40,10 @@ public abstract class Matrix {
 
     public BigDecimal getDeterminant() {
         if (determinant == null) {
-            determinant = findDeterminant(getSquareMatrix());
+            DeterminantCalculator determinantCalculator = new DeterminantCalculator(getSquareMatrix());
+            determinant = determinantCalculator.calculateDeterminant();
         }
         return determinant;
-    }
-
-    private BigDecimal findDeterminant(BigDecimal[][] squareMatrix) {
-        if (squareMatrix.length == 1) {
-            return squareMatrix[0][0];
-        }
-
-        if (squareMatrix.length == 2) {
-            return squareMatrix[0][0].multiply(squareMatrix[1][1])
-                    .subtract(squareMatrix[0][1].multiply(squareMatrix[1][0]));
-        }
-
-        BigDecimal[][] temp;
-        BigDecimal result = BigDecimal.ZERO;
-        for (int i = 0; i < squareMatrix[0].length; i++) {
-            temp = new BigDecimal[squareMatrix.length - 1][squareMatrix[0].length - 1];
-            for (int j = 1; j < squareMatrix.length; j++) {
-                for (int k = 0; k < squareMatrix[0].length; k++) {
-                    if (k < i) {
-                        temp[j - 1][k] = squareMatrix[j][k];
-                    } else if (k > i) {
-                        temp[j - 1][k - 1] = squareMatrix[j][k];
-                    }
-                }
-            }
-            result = result
-                    .add(squareMatrix[0][i].multiply(BigDecimal.valueOf(Math.pow(-1, i)))
-                            .multiply(findDeterminant(temp)));
-        }
-        return result.setScale(DEFAULT_SCALE, RoundingMode.UP);
     }
 
     private BigDecimal[][] getSquareMatrix() {
