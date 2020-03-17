@@ -9,7 +9,6 @@ import java.math.RoundingMode;
 import java.util.Scanner;
 
 class InputCommand extends Command {
-    private final static int DEFAULT_SCALE = 6;
     private final static int LOWER_BOUND = 2;
     private final static int HIGHER_BOUND = 20;
 
@@ -35,7 +34,7 @@ class InputCommand extends Command {
                     System.out.print("Enter a" + (j + 1) + ": ");
                 }
                 String value = scanner.nextLine();
-                matrix[i][j] = new BigDecimal(value).setScale(DEFAULT_SCALE, RoundingMode.UP);
+                matrix[i][j] = new BigDecimal(value).setScale(Matrix.DEFAULT_SCALE, RoundingMode.UP);
             }
         }
         Matrix linearSystem = new LinearEquationsSystem(matrix);

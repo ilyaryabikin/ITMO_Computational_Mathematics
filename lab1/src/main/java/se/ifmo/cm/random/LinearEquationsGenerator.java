@@ -8,7 +8,6 @@ import java.math.RoundingMode;
 import java.util.Random;
 
 public class LinearEquationsGenerator {
-    private final static int OUT_SCALE = 6;
     private final static int GENERATION_SCALE = 10;
     private final static int SOLUTION_UPPER_BOUND = 5000000;
 
@@ -22,9 +21,9 @@ public class LinearEquationsGenerator {
         BigDecimal[][] result = new BigDecimal[variables][variables + 1];
         for (int i = 0; i < variables; i++) {
             for (int j = 0; j < variables; j++) {
-                result[i][j] = leftPart[i][j].setScale(OUT_SCALE, RoundingMode.UP);
+                result[i][j] = leftPart[i][j].setScale(Matrix.DEFAULT_SCALE, RoundingMode.UP);
             }
-            result[i][variables] = rightPart[i].setScale(OUT_SCALE, RoundingMode.UP);
+            result[i][variables] = rightPart[i].setScale(Matrix.DEFAULT_SCALE, RoundingMode.UP);
         }
         return new LinearEquationsSystem(result);
     }

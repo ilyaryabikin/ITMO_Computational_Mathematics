@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 
 public abstract class Matrix {
-    protected final static int DEFAULT_SCALE = 6;
+    public final static int DEFAULT_SCALE = 6;
 
     protected int rows;
     protected int cols;
