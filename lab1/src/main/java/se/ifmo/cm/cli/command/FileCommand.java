@@ -45,6 +45,8 @@ class FileCommand extends Command {
 
         Matrix linearEquations = new LinearEquationsSystem(matrix);
         dataHolder.setMatrix(linearEquations);
+        System.out.println("Input equations system:");
+        System.out.println(dataHolder.getMatrix());
         menuState = MenuState.SOLVE;
     }
 }
