@@ -15,9 +15,9 @@ class SolveCommand extends Command {
 
     @Override
     protected void execute() throws NoOrUnlimitedSolutionsException {
-        System.out.println("Matrix determinant: " + dataHolder.getMatrix().getDeterminant());
+        System.out.println("Matrix determinant: " + matrixDao.getMatrix().getDeterminant());
         System.out.println("\nSolving Linear Algebraic Equations System...\n");
-        GaussianElimination solver = new GaussianElimination(dataHolder.getMatrix());
+        GaussianElimination solver = new GaussianElimination(matrixDao.getMatrix());
         solver.solve();
         System.out.println("Triangle form of the system:");
         System.out.println(matrixToString(solver.getTriangleForm()));

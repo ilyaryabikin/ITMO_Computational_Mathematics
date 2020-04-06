@@ -38,7 +38,7 @@ class InputCommand extends Command {
             }
         }
         Matrix linearSystem = new LinearEquationsSystem(matrix);
-        dataHolder.setMatrix(linearSystem);
+        matrixDao.setMatrix(linearSystem);
         menuState = MenuState.SOLVE;
     }
 }

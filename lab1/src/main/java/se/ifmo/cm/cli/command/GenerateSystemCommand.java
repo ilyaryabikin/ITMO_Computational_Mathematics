@@ -21,9 +21,9 @@ class GenerateSystemCommand extends Command {
         if (variables < LOWER_BOUND || variables > HIGHER_BOUND) {
             throw new IllegalArgumentException("You entered wrong variables number.");
         }
-        dataHolder.setMatrix(LinearEquationsGenerator.generateLinearSystem(variables));
+        matrixDao.setMatrix(LinearEquationsGenerator.generateLinearSystem(variables));
         System.out.println("\nGenerated equations system:");
-        System.out.println(dataHolder.getMatrix());
+        System.out.println(matrixDao.getMatrix());
         menuState = MenuState.SOLVE;
     }
 }

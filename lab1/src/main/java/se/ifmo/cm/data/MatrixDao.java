@@ -3,17 +3,17 @@ package se.ifmo.cm.data;
 import se.ifmo.cm.matrix.LinearEquationsSystem;
 import se.ifmo.cm.matrix.Matrix;
 
-public class DataHolder {
-    private static DataHolder dataHolder = new DataHolder();
+public class MatrixDao {
+    private static MatrixDao matrixDao = new MatrixDao();
 
     private Matrix matrix;
 
-    private DataHolder() {
+    private MatrixDao() {
         this.matrix = new LinearEquationsSystem(3);
     }
 
-    public static DataHolder getInstance() {
-        return dataHolder;
+    public static MatrixDao getInstance() {
+        return matrixDao;
     }
 
     public Matrix getMatrix() {
