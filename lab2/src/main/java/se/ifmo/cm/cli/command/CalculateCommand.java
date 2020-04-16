@@ -19,36 +19,38 @@ class CalculateCommand extends Command {
     protected void execute() {
         System.out.print("Enter lower bound: ");
         double lowerBound = Double.parseDouble(scanner.nextLine());
+
         System.out.print("Enter upper bound: ");
         double upperBound = Double.parseDouble(scanner.nextLine());
+
         System.out.print("Enter precision: ");
         double precision = Double.parseDouble(scanner.nextLine());
+
         System.out.println();
         System.out.println("Calculating integral for function " + chosenFunction + " ...\n");
+
         IntegrationMethod leftRiemannSum = new LeftRiemannSum(lowerBound, upperBound, precision);
         IntegrationMethod rightRiemannSum = new RightRiemannSum(lowerBound, upperBound, precision);
         IntegrationMethod middleRiemannSum = new MiddleRiemannSum(lowerBound, upperBound, precision);
+
         System.out.println("Result for left Riemann sum:");
         printResults(leftRiemannSum);
+
         System.out.println("Result for right Riemann sum:");
         printResults(rightRiemannSum);
+
         System.out.println("Result for middle Riemann sum:");
         printResults(middleRiemannSum);
+
         menuState = MenuState.FINISH;
     }
 
     private void printResults(IntegrationMethod integrationMethod) {
         CalculationDetails calculationDetails = integrationMethod.integrate(
                 chosenFunction.getFunction());
-        if (Double.isFinite(calculationDetails.getResult())) {
-            System.out.println(calculationDetails);
-            if (!integrationMethod.isPrecisionReached()) {
-                System.out.println("Desired precision cannot be reached.\n");
-            } else {
-                System.out.println();
-            }
-            return;
-        }
-        System.out.println("Cannot calculate integral on this interval.\n");
+        System.out.println(Double.isFinite(calculationDetails.getResult()) ?
+                calculationDetails :
+                "Cannot calculate integral on this interval.");
+        System.out.println();
     }
 }

@@ -30,8 +30,7 @@ public abstract class RiemannSumMethod implements IntegrationMethod {
         return (upperBound - lowerBound) / currentIntervals;
     }
 
-    @Override
-    public boolean isPrecisionReached() {
+    protected boolean isPrecisionReached() {
         return currentIntervals <= MAX_INTERVALS;
     }
 }

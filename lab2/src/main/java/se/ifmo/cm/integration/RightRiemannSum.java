@@ -27,6 +27,7 @@ public class RightRiemannSum extends RiemannSumMethod {
             currentSum = 0;
         }
         double calculationsError = Math.abs(currentSum - previousSum);
-        return new CalculationDetails(currentSum, currentIntervals, calculationsError);
+        return new CalculationDetails(currentSum, currentIntervals,
+                calculationsError, isPrecisionReached());
     }
 }
