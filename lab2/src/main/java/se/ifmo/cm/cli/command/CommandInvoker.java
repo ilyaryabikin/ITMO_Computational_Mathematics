@@ -5,8 +5,8 @@ import se.ifmo.cm.cli.state.MenuState;
 import java.util.Scanner;
 
 public class CommandInvoker {
+    private final Scanner scanner;
     private Command currentCommand;
-    private Scanner scanner;
 
     public CommandInvoker(Scanner scanner) {
         this.scanner = scanner;
