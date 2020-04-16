@@ -14,14 +14,6 @@
         <maven.compiler.release>11</maven.compiler.release>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.miglayout</groupId>
-            <artifactId>miglayout-swing</artifactId>
-            <version>5.2</version>
-        </dependency>
-    </dependencies>
-
     <build>
         <plugins>
             <plugin>
